@@ -108,7 +108,7 @@ Open `http://localhost:3000` in your browser.
 
 ## Available Scripts
 
-From `/home/runner/work/theropy-ai/theropy-ai`:
+From the project root:
 
 ```bash
 npm run dev      # Start the Next.js frontend
