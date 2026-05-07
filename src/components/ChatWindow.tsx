@@ -16,7 +16,7 @@ function formatTime(date: Date): string {
   return new Date(date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 }
 
-export default function ChatWindow({ messages, isLoading, emotion, onRegenerate }: ChatWindowProps) {
+export default function ChatWindow({ messages, isLoading, onRegenerate }: ChatWindowProps) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

@@ -27,11 +27,26 @@ export default function DatasetPanel({ onClose, onAttach }: DatasetPanelProps) {
   const [showPreview, setShowPreview] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setUploadedFile(file.name);
-      setShowPreview(true);
+      
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+        const resp = await fetch('http://localhost:8000/api/datasets/upload', {
+          method: 'POST',
+          body: formData,
+        });
+        if (resp.ok) {
+          setShowPreview(true);
+          // In a real app, we'd use the backend data for the preview
+        }
+      } catch (err) {
+        console.error('Upload failed:', err);
+      }
     }
   };
 

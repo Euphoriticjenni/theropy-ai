@@ -378,3 +378,7 @@ async def list_datasets():
 @app.get("/api/health")
 async def health():
     return {"status": "ok", "version": "2.0.0", "name": "TheroPy AI"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

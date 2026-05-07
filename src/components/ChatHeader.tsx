@@ -106,9 +106,10 @@ export default function ChatHeader({
           )}
         </div>
 
-        <button className="header-btn" onClick={onOpenMindfulness}>
+        <button className="header-btn mindfulness-btn" onClick={onOpenMindfulness}>
+          <div className="mindfulness-btn-glow" />
           <Sparkles size={15} />
-          <span>Mindfulness</span>
+          <span>Mindfulness Sanctuary</span>
         </button>
 
         <button className="header-btn" onClick={onOpenDataset}>

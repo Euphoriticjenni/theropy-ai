@@ -28,67 +28,241 @@ interface Exercise {
 }
 
 const EXERCISES: Exercise[] = [
+  // --- BREATHING (5) ---
   {
     id: 'box-breathing',
     title: 'Box Breathing',
-    desc: 'Calm your nervous system with a 4-4-4-4 pattern',
+    desc: '4-4-4-4 pattern to reset the nervous system',
     icon: <Wind size={22} />,
     color: '#6366f1',
     duration: 60,
-    steps: [
-      'Inhale slowly for 4 seconds',
-      'Hold your breath for 4 seconds',
-      'Exhale slowly for 4 seconds',
-      'Hold empty for 4 seconds',
-      'Repeat the cycle',
-    ],
+    steps: ['Inhale for 4s', 'Hold for 4s', 'Exhale for 4s', 'Hold empty for 4s'],
   },
   {
     id: '478-breathing',
-    title: '4-7-8 Breathing',
-    desc: 'A powerful relaxation technique for anxiety',
+    title: '4-7-8 Relax',
+    desc: 'The "natural tranquilizer" for deep calm',
     icon: <Sparkles size={22} />,
     color: '#8b5cf6',
-    duration: 120,
-    steps: [
-      'Inhale quietly through your nose for 4 seconds',
-      'Hold your breath for 7 seconds',
-      'Exhale completely through your mouth for 8 seconds',
-      'This is one breath cycle',
-      'Repeat 3 more times for a total of 4 cycles',
-    ],
+    duration: 76,
+    steps: ['Inhale for 4s', 'Hold for 7s', 'Exhale for 8s', 'Repeat cycle'],
   },
   {
-    id: 'quick-meditation',
-    title: 'Quick Meditation',
-    desc: '2-minute guided meditation for clarity',
-    icon: <Heart size={22} />,
-    color: '#ec4899',
-    duration: 120,
-    steps: [
-      'Close your eyes and sit comfortably',
-      'Focus on the natural rhythm of your breath',
-      'Notice any thoughts — let them pass like clouds',
-      'Bring attention back to your breath gently',
-      'When ready, slowly open your eyes',
-    ],
+    id: 'equal-breathing',
+    title: 'Equal Breath',
+    desc: 'Balance energy with even inhales/exhales',
+    icon: <Wind size={22} />,
+    color: '#3b82f6',
+    duration: 80,
+    steps: ['Inhale for 5s', 'Exhale for 5s', 'Inhale for 5s', 'Exhale for 5s'],
   },
+  {
+    id: 'lions-breath',
+    title: "Lion's Release",
+    desc: 'Release emotional heat and facial tension',
+    icon: <Flame size={22} />,
+    color: '#f59e0b',
+    duration: 40,
+    steps: ['Inhale deep', 'Open mouth wide', 'Stick tongue out', 'Exhale with Ha!'],
+  },
+  {
+    id: 'deep-hum',
+    title: 'Vagal Hum',
+    desc: 'Vibrate your way to instant nervous system calm',
+    icon: <Radio size={22} />,
+    color: '#2dd4bf',
+    duration: 70,
+    steps: ['Inhale deep', 'Hum low on exhale', 'Feel the vibration', 'Repeat gently'],
+  },
+
+  // --- HEAD & FACE (4) ---
+  {
+    id: 'eye-palming',
+    title: 'Eye Palming',
+    desc: 'Rest your eyes from screen fatigue',
+    icon: <Eye size={22} />,
+    color: '#6366f1',
+    duration: 60,
+    steps: ['Rub palms to warm', 'Cup over closed eyes', 'Feel the darkness', 'Breathe deeply'],
+  },
+  {
+    id: 'jaw-release',
+    title: 'Jaw Softener',
+    desc: 'Unclench the most common stress point',
+    icon: <Activity size={22} />,
+    color: '#ef4444',
+    duration: 45,
+    steps: ['Open mouth slightly', 'Wiggle jaw side-to-side', 'Massage hinges', 'Let jaw hang heavy'],
+  },
+  {
+    id: 'scalp-massage',
+    title: 'Scalp Reset',
+    desc: 'Release tension at the crown',
+    icon: <Activity size={22} />,
+    color: '#f59e0b',
+    duration: 60,
+    steps: ['Fingertips on scalp', 'Small circles', 'Move front to back', 'Deep breath'],
+  },
+  {
+    id: 'temple-press',
+    title: 'Temple Calm',
+    desc: 'Soothe mental pressure points',
+    icon: <Activity size={22} />,
+    color: '#8b5cf6',
+    duration: 50,
+    steps: ['Index fingers on temples', 'Very light circles', 'Close your eyes', 'Exhale tension'],
+  },
+
+  // --- NECK & SHOULDERS (4) ---
+  {
+    id: 'neck-tilt',
+    title: 'Neck Soften',
+    desc: 'Release "tech-neck" tension',
+    icon: <Activity size={22} />,
+    color: '#84cc16',
+    duration: 60,
+    steps: ['Tilt left for 15s', 'Back to center', 'Tilt right for 15s', 'Chin to chest'],
+  },
+  {
+    id: 'shoulder-rolls',
+    title: 'Shoulder Rolls',
+    desc: 'Roll away the weight of the day',
+    icon: <RotateCcw size={22} />,
+    color: '#64748b',
+    duration: 50,
+    steps: ['Roll back 5 times', 'Roll forward 5 times', 'Shrug high', 'Release fast'],
+  },
+  {
+    id: 'neck-circles',
+    title: 'Neck Circles',
+    desc: 'Gentle mobility for stiff necks',
+    icon: <RotateCcw size={22} />,
+    color: '#0ea5e9',
+    duration: 60,
+    steps: ['Drop chin', 'Slow circle left', 'Slow circle right', 'Pause and breathe'],
+  },
+  {
+    id: 'shoulder-squeeze',
+    title: 'Trapeze Release',
+    desc: 'Target the upper back stress knots',
+    icon: <Activity size={22} />,
+    color: '#ec4899',
+    duration: 40,
+    steps: ['Squeeze shoulders to ears', 'Hold tight 5s', 'Drop them instantly', 'Repeat'],
+  },
+
+  // --- FULL BODY (4) ---
   {
     id: 'body-scan',
-    title: 'Body Scan',
-    desc: 'Release tension from head to toe',
+    title: 'Full Body Scan',
+    desc: 'Progressive awareness for total relaxation',
     icon: <Activity size={22} />,
     color: '#06b6d4',
-    duration: 180,
-    steps: [
-      'Start at the top of your head — notice any tension',
-      'Relax your forehead, eyes, and jaw',
-      'Drop your shoulders away from your ears',
-      'Unclench your hands and relax your arms',
-      'Breathe into your chest and stomach',
-      'Release tension in your hips and legs',
-      'Feel your feet grounded on the floor',
-    ],
+    duration: 120,
+    steps: ['Focus on head', 'Relax shoulders', 'Feel your chest', 'Relax your legs'],
+  },
+  {
+    id: 'muscle-pmr',
+    title: 'Tense & Release',
+    desc: 'Systematic physical tension release',
+    icon: <Activity size={22} />,
+    color: '#ef4444',
+    duration: 150,
+    steps: ['Tense feet & release', 'Tense legs & release', 'Tense arms & release', 'Whole body!'],
+  },
+  {
+    id: 'standing-stretch',
+    title: 'Sky Reach',
+    desc: 'Full body lengthening and expansion',
+    icon: <Activity size={22} />,
+    color: '#10b981',
+    duration: 60,
+    steps: ['Stand up straight', 'Reach arms to sky', 'Go on tiptoes', 'Swoop down to toes'],
+  },
+  {
+    id: 'spine-twist',
+    title: 'Chair Twist',
+    desc: 'Release spinal compression while sitting',
+    icon: <Activity size={22} />,
+    color: '#a855f7',
+    duration: 60,
+    steps: ['Sit tall', 'Twist left & hold', 'Center', 'Twist right & hold'],
+  },
+
+  // --- LEGS & FEET (4) ---
+  {
+    id: 'ankle-circles',
+    title: 'Ankle Circles',
+    desc: 'Improve circulation in the lower body',
+    icon: <RotateCcw size={22} />,
+    color: '#f43f5e',
+    duration: 60,
+    steps: ['Lift left foot', 'Circle 10 times', 'Switch to right', 'Circle 10 times'],
+  },
+  {
+    id: 'toe-curls',
+    title: 'Toe Scrunches',
+    desc: 'Ground yourself through your feet',
+    icon: <Activity size={22} />,
+    color: '#10b981',
+    duration: 40,
+    steps: ['Curl toes tight', 'Splay them wide', 'Press into floor', 'Relax'],
+  },
+  {
+    id: 'leg-extensions',
+    title: 'Leg Stretch',
+    desc: 'Ease tension from long periods of sitting',
+    icon: <Activity size={22} />,
+    color: '#3b82f6',
+    duration: 80,
+    steps: ['Extend left leg', 'Flex foot', 'Extend right leg', 'Flex foot'],
+  },
+  {
+    id: 'calf-pump',
+    title: 'Calf Pumps',
+    desc: 'Boost blood flow and energy',
+    icon: <Activity size={22} />,
+    color: '#2dd4bf',
+    duration: 60,
+    steps: ['Stand on toes', 'Drop to heels', 'Rapidly repeat', 'Shake it out'],
+  },
+
+  // --- MENTAL & GROUNDING (4) ---
+  {
+    id: 'grounding-54321',
+    title: '5-4-3-2-1 Fix',
+    desc: 'Connect with your senses to stop spirals',
+    icon: <Eye size={22} />,
+    color: '#10b981',
+    duration: 100,
+    steps: ['Name 5 visual things', '4 touch sensations', '3 sounds', '2 smells'],
+  },
+  {
+    id: 'safe-space',
+    title: 'Beach Escape',
+    desc: 'Vivid mental sanctuary visualization',
+    icon: <Waves size={22} />,
+    color: '#0ea5e9',
+    duration: 150,
+    steps: ['Imagine the sand', 'Hear the waves', 'Feel the sun', 'Breath sea air'],
+  },
+  {
+    id: 'affirmations',
+    title: 'Self-Worth',
+    desc: 'Internalize positive mental anchors',
+    icon: <Sparkles size={22} />,
+    color: '#eab308',
+    duration: 60,
+    steps: ['"I am capable"', '"I am at peace"', '"I am enough"', 'Deep breath'],
+  },
+  {
+    id: 'counting-back',
+    title: 'Focus Count',
+    desc: 'Quiet the "monkey mind" with numbers',
+    icon: <Activity size={22} />,
+    color: '#6366f1',
+    duration: 60,
+    steps: ['Count 100 to 1', 'Focus on numbers', 'If mind wanders...', 'Start again from 100'],
   },
 ];
 
@@ -120,15 +294,36 @@ interface Soundscape {
 }
 
 const SOUNDSCAPES: Soundscape[] = [
+  // --- Nature ---
   { id: 'rain', label: 'Rain', icon: <Droplets size={18} />, color: '#60a5fa', category: 'nature' },
+  { id: 'thunder', label: 'Thunderstorm', icon: <Cloud size={18} />, color: '#3b82f6', category: 'nature' },
   { id: 'ocean', label: 'Ocean Waves', icon: <Waves size={18} />, color: '#06b6d4', category: 'nature' },
   { id: 'forest', label: 'Forest', icon: <TreePine size={18} />, color: '#10b981', category: 'nature' },
+  { id: 'river', label: 'River', icon: <Droplets size={18} />, color: '#34d399', category: 'nature' },
+  { id: 'wind', label: 'Wind', icon: <Wind size={18} />, color: '#94a3b8', category: 'nature' },
+  { id: 'birds', label: 'Morning Birds', icon: <Sparkles size={18} />, color: '#fbbf24', category: 'nature' },
+  { id: 'night', label: 'Night Crickets', icon: <Cloud size={18} />, color: '#6366f1', category: 'nature' },
   { id: 'fireplace', label: 'Fireplace', icon: <Flame size={18} />, color: '#f59e0b', category: 'nature' },
+  { id: 'snow', label: 'Snowfall', icon: <Cloud size={18} />, color: '#e2e8f0', category: 'nature' },
+  
+  // --- Urban/Ambient ---
+  { id: 'coffee', label: 'Coffee Shop', icon: <Coffee size={18} />, color: '#92400e', category: 'noise' },
+  { id: 'library', label: 'Library', icon: <Activity size={18} />, color: '#4b5563', category: 'noise' },
+  { id: 'office', label: 'Office', icon: <Activity size={18} />, color: '#64748b', category: 'noise' },
+  { id: 'fan', label: 'Fan', icon: <RotateCcw size={18} />, color: '#cbd5e1', category: 'noise' },
+  { id: 'plane', label: 'Airplane', icon: <Wind size={18} />, color: '#334155', category: 'noise' },
+  { id: 'train', label: 'Train Ride', icon: <Activity size={18} />, color: '#475569', category: 'noise' },
   { id: 'white-noise', label: 'White Noise', icon: <Cloud size={18} />, color: '#9ca3af', category: 'noise' },
   { id: 'pink-noise', label: 'Pink Noise', icon: <Cloud size={18} />, color: '#f472b6', category: 'noise' },
   { id: 'brown-noise', label: 'Brown Noise', icon: <Cloud size={18} />, color: '#a78bfa', category: 'noise' },
-  { id: 'binaural-focus', label: 'Focus Beats', icon: <Radio size={18} />, color: '#6366f1', category: 'binaural' },
-  { id: 'binaural-relax', label: 'Relax Beats', icon: <Radio size={18} />, color: '#8b5cf6', category: 'binaural' },
+  { id: 'city', label: 'City Hum', icon: <Activity size={18} />, color: '#1e293b', category: 'noise' },
+
+  // --- Binaural/Focus ---
+  { id: 'delta', label: 'Sleep (Delta)', icon: <Activity size={18} />, color: '#1e3a8a', category: 'binaural' },
+  { id: 'theta', label: 'Meditate (Theta)', icon: <Activity size={18} />, color: '#4338ca', category: 'binaural' },
+  { id: 'alpha', label: 'Relax (Alpha)', icon: <Activity size={18} />, color: '#6366f1', category: 'binaural' },
+  { id: 'beta', label: 'Focus (Beta)', icon: <Activity size={18} />, color: '#8b5cf6', category: 'binaural' },
+  { id: 'gamma', label: 'Peak (Gamma)', icon: <Activity size={18} />, color: '#d946ef', category: 'binaural' },
 ];
 
 // ===== Audio Engine (Web Audio API) =====
@@ -205,6 +400,18 @@ class SoundEngine {
     this.nodes.set(id + '_r', { source: oscR, gain });
   }
 
+  playBinauralPreset(id: string, preset: string, volume: number) {
+    const freqMap: Record<string, [number, number]> = {
+      delta: [200, 2.5],
+      theta: [200, 6],
+      alpha: [200, 10],
+      beta: [200, 20],
+      gamma: [200, 40],
+    };
+    const [base, beat] = freqMap[preset] || [200, 10];
+    this.playBinaural(id, base, beat, volume);
+  }
+
   playNature(id: string, volume: number) {
     // Nature sounds use filtered noise to approximate different environments
     this.stop(id);
@@ -233,7 +440,8 @@ class SoundEngine {
 
     // Different filter settings per nature type
     const freqMap: Record<string, number> = {
-      rain: 4000, ocean: 800, forest: 2500, fireplace: 1200,
+      rain: 4000, ocean: 800, forest: 2500, fireplace: 1200, river: 3000, wind: 600, snow: 5000,
+      thunder: 300, birds: 6000, night: 4500
     };
     filter.frequency.value = freqMap[id] || 2000;
     filter.Q.value = 0.5;
@@ -367,11 +575,14 @@ export default function MindfulnessSidebar({ isOpen, onClose }: MindfulnessSideb
         const vol = 0.3;
         newSounds[sound.id] = vol;
         if (sound.category === 'noise') {
-          const noiseType = sound.id.replace('-noise', '') as 'white' | 'pink' | 'brown';
+          let noiseType: 'white' | 'pink' | 'brown' = 'white';
+          if (sound.id.includes('pink')) noiseType = 'pink';
+          else if (sound.id.includes('brown')) noiseType = 'brown';
+          else if (sound.id.includes('city') || sound.id.includes('fan') || sound.id.includes('train') || sound.id.includes('office')) noiseType = 'brown';
+          else if (sound.id.includes('plane')) noiseType = 'pink'; // Plane is closer to pink noise
           soundEngine.playNoise(sound.id, noiseType, vol);
         } else if (sound.category === 'binaural') {
-          const isRelax = sound.id.includes('relax');
-          soundEngine.playBinaural(sound.id, isRelax ? 200 : 300, isRelax ? 4 : 14, vol);
+          soundEngine.playBinauralPreset(sound.id, sound.id, vol);
         } else {
           soundEngine.playNature(sound.id, vol);
         }
@@ -422,11 +633,11 @@ export default function MindfulnessSidebar({ isOpen, onClose }: MindfulnessSideb
         onClick={onClose}
       />
       <motion.aside
-        className="mindfulness-sidebar"
-        initial={{ x: '100%' }}
-        animate={{ x: 0 }}
-        exit={{ x: '100%' }}
-        transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+        className="mindfulness-dashboard"
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.98 }}
+        transition={{ duration: 0.4 }}
       >
         {/* Header */}
         <div className="mindfulness-header">
@@ -442,41 +653,13 @@ export default function MindfulnessSidebar({ isOpen, onClose }: MindfulnessSideb
           </button>
         </div>
 
-        <div className="mindfulness-intro">
-          <div className="mindfulness-overview">
-            <div className="mindfulness-overview-badge">Inspired by Opera Air</div>
-            <h3>Build calm into your browsing routine.</h3>
-            <p>
-              Keep the tools you need for stress relief and focus in one dedicated sidebar.
-              Start a guided exercise, schedule reminders, or play a soundscape without leaving the page.
-            </p>
-            <div className="mindfulness-overview-grid">
-              <div className="mindfulness-overview-card">
-                <Wind size={16} />
-                <strong>Guided exercises</strong>
-                <span>Breathing, meditation, and body scans for quick resets.</span>
-              </div>
-              <div className="mindfulness-overview-card">
-                <Timer size={16} />
-                <strong>Break reminders</strong>
-                <span>Pick an interval and choose the break activity that fits your moment.</span>
-              </div>
-              <div className="mindfulness-overview-card">
-                <Headphones size={16} />
-                <strong>Soundscapes</strong>
-                <span>Nature sounds, white noise, and binaural beats for focus or relaxation.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Tabs */}
         <div className="mindfulness-tabs">
           {TABS.map(tab => (
             <button
               key={tab.id}
               className={`mindfulness-tab ${activeTab === tab.id ? 'active' : ''}`}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => { setActiveTab(tab.id); resetExercise(); }}
             >
               {tab.icon}
               {tab.label}
@@ -495,34 +678,41 @@ export default function MindfulnessSidebar({ isOpen, onClose }: MindfulnessSideb
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.2 }}
+                className="exercises-tab-content"
               >
                 {!activeExercise ? (
-                  <div className="exercise-grid">
-                    {EXERCISES.map(ex => (
-                      <button
-                        key={ex.id}
-                        className="exercise-card"
-                        onClick={() => startExercise(ex.id)}
-                      >
-                        <div className="exercise-card-icon" style={{ background: ex.color + '18', color: ex.color }}>
-                          {ex.icon}
-                        </div>
-                        <div className="exercise-card-info">
-                          <h4>{ex.title}</h4>
-                          <p>{ex.desc}</p>
-                          <span className="exercise-duration">{Math.floor(ex.duration / 60)} min</span>
-                        </div>
-                        <ChevronRight size={16} className="exercise-card-arrow" />
-                      </button>
-                    ))}
+                  <div className="exercise-list-view">
+                    <div className="mindfulness-hero">
+                      <h1>Mindfulness Sanctuary</h1>
+                      <p>25 tasks for Head, Neck, Body, and Mind. Choose one to begin.</p>
+                    </div>
+                    <div className="exercise-grid">
+                      {EXERCISES.map(ex => (
+                        <button
+                          key={ex.id}
+                          className="exercise-card"
+                          onClick={() => startExercise(ex.id)}
+                        >
+                          <div className="exercise-card-icon" style={{ background: ex.color + '18', color: ex.color }}>
+                            {ex.icon}
+                          </div>
+                          <div className="exercise-card-info">
+                            <h4>{ex.title}</h4>
+                            <p>{ex.desc}</p>
+                            <span className="exercise-duration">{Math.floor(ex.duration / 60)} min</span>
+                          </div>
+                          <ChevronRight size={16} className="exercise-card-arrow" />
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 ) : (
-                  <div className="exercise-active">
+                  <div className="exercise-active-view">
                     {(() => {
                       const exercise = EXERCISES.find(e => e.id === activeExercise)!;
                       const progress = (exerciseTimer / exercise.duration) * 100;
                       return (
-                        <>
+                        <div className="exercise-active">
                           <div className="exercise-active-header">
                             <h3>{exercise.title}</h3>
                             <p>{exercise.desc}</p>
@@ -548,6 +738,7 @@ export default function MindfulnessSidebar({ isOpen, onClose }: MindfulnessSideb
                           </div>
 
                           <div className="exercise-steps">
+                            <h4 className="exercise-step-guide">How to do it:</h4>
                             {exercise.steps.map((step, i) => (
                               <div
                                 key={i}
@@ -556,7 +747,7 @@ export default function MindfulnessSidebar({ isOpen, onClose }: MindfulnessSideb
                                 <div className="step-indicator">
                                   {i < currentStep ? '✓' : i + 1}
                                 </div>
-                                <span>{step}</span>
+                                <span className="step-text">{step}</span>
                               </div>
                             ))}
                           </div>
@@ -571,13 +762,160 @@ export default function MindfulnessSidebar({ isOpen, onClose }: MindfulnessSideb
                             </button>
                             <button className="exercise-ctrl-btn secondary" onClick={resetExercise}>
                               <RotateCcw size={18} />
-                              Back
+                              Back to Tasks
                             </button>
                           </div>
-                        </>
+                        </div>
                       );
                     })()}
                   </div>
+                )}
+              </motion.div>
+            )}
+
+            {/* === Break Reminders Tab === */}
+            {activeTab === 'reminders' && (
+              <motion.div
+                key="reminders"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.2 }}
+                className="reminders-tab-content"
+              >
+                <div className="reminder-toggle-card">
+                  <div className="reminder-toggle-info">
+                    {breakEnabled ? <Bell size={20} /> : <BellOff size={20} />}
+                    <div>
+                      <h4>Break Reminders</h4>
+                      <p>{breakEnabled ? 'Reminders are active' : 'Enable to get notified'}</p>
+                    </div>
+                  </div>
+                  <button
+                    className={`toggle-switch ${breakEnabled ? 'active' : ''}`}
+                    onClick={enableBreakReminders}
+                  >
+                    <span className="toggle-knob" />
+                  </button>
+                </div>
+
+                <div className="reminder-section">
+                  <h4 className="reminder-section-title">Reminder Interval</h4>
+                  <div className="interval-pills">
+                    {INTERVALS.map(min => (
+                      <button
+                        key={min}
+                        className={`interval-pill ${breakInterval === min ? 'active' : ''}`}
+                        onClick={() => setBreakInterval(min)}
+                      >
+                        {min} min
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="reminder-section">
+                  <h4 className="reminder-section-title">Break Activities</h4>
+                  <div className="activity-list">
+                    {BREAK_ACTIVITIES.map(act => (
+                      <button
+                        key={act.id}
+                        className={`activity-item ${selectedActivities.includes(act.id) ? 'active' : ''}`}
+                        onClick={() => toggleActivity(act.id)}
+                      >
+                        <div className="activity-icon">{act.icon}</div>
+                        <div className="activity-info">
+                          <span className="activity-label">{act.label}</span>
+                          <span className="activity-desc">{act.desc}</span>
+                        </div>
+                        <div className="activity-check">
+                          {selectedActivities.includes(act.id) && '✓'}
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* === Soundscapes Tab === */}
+            {activeTab === 'soundscapes' && (
+              <motion.div
+                key="soundscapes"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.2 }}
+                className="soundscapes-tab-content"
+              >
+                {(['nature', 'noise', 'binaural'] as const).map(category => (
+                  <div key={category} className="sound-category">
+                    <h4 className="sound-category-title">
+                      {category === 'nature' ? '🌿 Nature Sounds' :
+                       category === 'noise' ? '🔊 Ambient Noise' :
+                       '🧠 Binaural Beats'}
+                    </h4>
+                    <div className="sound-list">
+                      {SOUNDSCAPES.filter(s => s.category === category).map(sound => {
+                        const isPlaying = activeSounds[sound.id] !== undefined;
+                        return (
+                          <div key={sound.id} className={`sound-item ${isPlaying ? 'active' : ''}`}>
+                            <button
+                              className="sound-toggle-btn"
+                              onClick={() => toggleSound(sound)}
+                              style={{ color: isPlaying ? sound.color : undefined }}
+                            >
+                              <div className="sound-icon" style={{
+                                background: isPlaying ? sound.color + '20' : undefined,
+                                color: isPlaying ? sound.color : undefined,
+                              }}>
+                                {sound.icon}
+                              </div>
+                              <span className="sound-label">{sound.label}</span>
+                              <div className={`sound-play-indicator ${isPlaying ? 'playing' : ''}`}>
+                                {isPlaying ? <Pause size={14} /> : <Play size={14} />}
+                              </div>
+                            </button>
+                            {isPlaying && (
+                              <motion.div
+                                className="sound-volume"
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                              >
+                                <input
+                                  type="range"
+                                  min="0"
+                                  max="1"
+                                  step="0.05"
+                                  value={activeSounds[sound.id]}
+                                  onChange={e => handleVolumeChange(sound.id, parseFloat(e.target.value))}
+                                  className="volume-slider"
+                                  style={{ '--slider-color': sound.color } as React.CSSProperties}
+                                />
+                                <span className="volume-value">
+                                  {Math.round((activeSounds[sound.id] || 0) * 100)}%
+                                </span>
+                              </motion.div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+
+                {Object.keys(activeSounds).length > 0 && (
+                  <button
+                    className="stop-all-btn"
+                    onClick={() => {
+                      soundEngine.stopAll();
+                      setActiveSounds({});
+                    }}
+                  >
+                    <Pause size={16} />
+                    Stop All Sounds
+                  </button>
                 )}
               </motion.div>
             )}

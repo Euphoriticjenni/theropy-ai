@@ -81,10 +81,9 @@ export default function SettingsPanel({ onClose, activeProvider, onProviderChang
       />
       <motion.div
         className="settings-panel"
-        initial={{ x: '100%' }}
-        animate={{ x: 0 }}
-        exit={{ x: '100%' }}
-        transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
       >
         <div className="settings-header">
           <h2>⚙️ Settings</h2>

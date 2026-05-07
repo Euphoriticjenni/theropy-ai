@@ -183,15 +183,23 @@ input:focus, textarea:focus, select:focus {
   border-right: 1px solid var(--border-subtle);
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition-base), width var(--transition-base);
+  transition: 
+    width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease;
   z-index: 100;
+  position: relative;
+  overflow: hidden;
+  will-change: width, transform;
 }
 
 .sidebar.collapsed {
-  transform: translateX(-100%);
   width: 0;
   min-width: 0;
-  border: none;
+  transform: translateX(-20px);
+  opacity: 0;
+  border-right: none;
+  pointer-events: none;
 }
 
 .sidebar-header {
@@ -380,6 +388,7 @@ input:focus, textarea:focus, select:focus {
   height: 100vh;
   overflow: hidden;
   position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ===== Chat Header ===== */
@@ -405,14 +414,26 @@ input:focus, textarea:focus, select:focus {
 
 .sidebar-toggle {
   padding: 8px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   color: var(--text-secondary);
-  transition: all var(--transition-fast);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sidebar-toggle:hover {
   background: var(--bg-glass-hover);
-  color: var(--text-primary);
+  color: var(--accent-primary);
+  transform: scale(1.1);
+}
+
+.sidebar-toggle.closed {
+  transform: rotate(180deg);
+}
+
+.sidebar-toggle.closed:hover {
+  transform: rotate(180deg) scale(1.1);
 }
 
 .chat-header-title {
@@ -947,17 +968,20 @@ input:focus, textarea:focus, select:focus {
 
 .settings-panel {
   position: fixed;
-  top: 0;
-  right: 0;
-  width: 440px;
-  max-width: 100%;
-  height: 100vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 540px;
+  max-width: 90%;
+  max-height: 85vh;
   background: var(--bg-secondary);
-  border-left: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
   z-index: 201;
   display: flex;
   flex-direction: column;
-  animation: slideIn 0.3s ease-out;
+  animation: modalFade 0.25s ease-out;
 }
 
 @keyframes slideIn {
@@ -1482,107 +1506,443 @@ input:focus, textarea:focus, select:focus {
   z-index: 200;
 }
 
-.mindfulness-sidebar {
+/* ===== Mindfulness Dashboard (Full Screen) ===== */
+.mindfulness-overlay {
   position: fixed;
-  top: 0;
-  right: 0;
-  width: 420px;
-  max-width: 100%;
-  height: 100vh;
-  background: var(--bg-secondary);
-  border-left: 1px solid var(--border-subtle);
-  z-index: 201;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  z-index: 200;
+}
+
+.mindfulness-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  z-index: 1999;
+}
+
+.mindfulness-dashboard {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
   display: flex;
   flex-direction: column;
-  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.15);
+  background: var(--bg-primary);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(6, 182, 212, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.08) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.06) 0px, transparent 50%);
+  animation: modalIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.settings-overlay, .dataset-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 900;
+}
+
+.settings-panel, .dataset-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  width: 90%;
+  max-width: 600px;
+  max-height: 85vh;
+  z-index: 1000;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-3xl);
+  box-shadow: var(--shadow-2xl);
+  display: flex;
+  flex-direction: column;
 }
 
 .mindfulness-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 20px;
+  padding: 30px 60px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(30px);
   border-bottom: 1px solid var(--border-subtle);
 }
 
 .mindfulness-header-title {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .mindfulness-header-icon {
-  font-size: 1.5rem;
-  width: 40px;
-  height: 40px;
+  font-size: 1.8rem;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-md);
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.12));
-}
-
-.mindfulness-header h2 {
-  font-size: 1.05rem;
-  font-weight: 700;
-}
-
-.mindfulness-subtitle {
-  font-size: 0.75rem;
-  color: var(--text-tertiary);
+  color: white;
+  box-shadow: var(--shadow-glow);
 }
 
 .mindfulness-close {
-  padding: 8px;
-  border-radius: var(--radius-sm);
+  padding: 12px;
+  border-radius: var(--radius-full);
   color: var(--text-secondary);
   transition: all var(--transition-fast);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
 }
 
 .mindfulness-close:hover {
   background: var(--bg-glass-hover);
-  color: var(--text-primary);
-}
-
-/* Tabs */
-.mindfulness-tabs {
-  display: flex;
-  gap: 4px;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.mindfulness-tab {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 9px 12px;
-  border-radius: var(--radius-md);
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  transition: all var(--transition-fast);
-  background: transparent;
-}
-
-.mindfulness-tab:hover {
-  background: var(--bg-glass-hover);
-  color: var(--text-primary);
-}
-
-.mindfulness-tab.active {
-  background: var(--accent-glow);
-  color: var(--accent-primary);
-  font-weight: 600;
-  border: 1px solid var(--border-active);
+  color: var(--accent-danger);
+  transform: rotate(90deg);
 }
 
 .mindfulness-body {
   flex: 1;
   overflow-y: auto;
+  padding: 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.mindfulness-overview {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.mindfulness-overview h3 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--text-primary), var(--accent-primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mindfulness-overview p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto 40px;
+}
+
+.mindfulness-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.mindfulness-overview-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2xl);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transition: all var(--transition-base);
+}
+
+.mindfulness-overview-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent-primary);
+}
+
+.mindfulness-overview-card strong {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.mindfulness-overview-card span {
+  font-size: 0.9rem;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+
+.mindfulness-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px 0 40px;
+}
+
+.mindfulness-tab {
+  padding: 10px 24px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all var(--transition-base);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.mindfulness-tab.active {
+  background: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Exercise Grid */
+.exercise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.exercise-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2xl);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: all var(--transition-base);
+  width: 100%;
+}
+
+.exercise-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-lg);
+  background: var(--bg-glass-hover);
+}
+
+.exercise-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exercise-card-info {
+  flex: 1;
+  text-align: left;
+}
+
+.exercise-card-info h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.exercise-card-info p {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+/* Sound Grid */
+.sound-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.sound-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
   padding: 16px;
+  transition: all var(--transition-base);
+}
+
+.sound-item.active {
+  border-color: var(--accent-primary);
+  background: var(--accent-glow);
+}
+
+.sound-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.sound-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
+}
+
+.sound-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  flex: 1;
+  text-align: left;
+}
+.exercise-active {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.exercise-active-header h3 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.exercise-active-header p {
+  color: var(--text-tertiary);
+}
+
+.exercise-timer-ring {
+  width: 320px;
+  height: 320px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.timer-track {
+  fill: none;
+  stroke: var(--border-subtle);
+  stroke-width: 4;
+}
+
+.timer-progress {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s linear;
+  filter: drop-shadow(0 0 8px var(--accent-glow));
+}
+
+.timer-text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timer-value {
+  font-size: 4rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-total {
+  font-size: 1rem;
+  color: var(--text-tertiary);
+}
+
+.exercise-steps {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.exercise-step {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: var(--radius-xl);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-base);
+  opacity: 0.5;
+}
+
+.exercise-step.active {
+  opacity: 1;
+  border-color: var(--accent-primary);
+  background: var(--accent-glow);
+  transform: scale(1.02);
+}
+
+.exercise-step.done {
+  opacity: 0.8;
+  border-color: var(--accent-success);
+}
+
+.step-indicator {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.exercise-step.active .step-indicator {
+  background: var(--accent-primary);
+  color: white;
+}
+
+.exercise-step.done .step-indicator {
+  background: var(--accent-success);
+  color: white;
+}
+
+.exercise-controls {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.exercise-ctrl-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  transition: all var(--transition-base);
+  background: var(--accent-primary);
+  color: white;
+}
+
+.exercise-ctrl-btn.secondary {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.exercise-ctrl-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .mindfulness-intro {
@@ -2194,4 +2554,55 @@ input:focus, textarea:focus, select:focus {
   .mindfulness-sidebar {
     width: 100%;
   }
+}
+
+.exercise-step-guide {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+  margin-bottom: 12px;
+  align-self: flex-start;
+}
+
+.step-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.exercise-step.active .step-text {
+  color: var(--accent-primary);
+  font-weight: 700;
+}
+
+.header-btn.mindfulness-btn {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(16, 185, 129, 0.15));
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: var(--accent-primary);
+  position: relative;
+  padding: 8px 16px;
+  gap: 10px;
+  font-weight: 600;
+}
+
+.mindfulness-btn-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.2), transparent 70%);
+  opacity: 0.5;
+  animation: pulseGlow 3s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  from { opacity: 0.3; transform: scale(1); }
+  to { opacity: 0.7; transform: scale(1.1); }
+}
+
+.settings-panel, .dataset-panel {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 1000 !important;
 }
